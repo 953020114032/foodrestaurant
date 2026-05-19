@@ -60,7 +60,7 @@ class UserSerializer(serializers.ModelSerializer):
                 app_user.profile_picture = pictures
                 app_user.save()
 
-                return app_user
+            return app_user
 
 
 class UserLoginSerializer(serializers.Serializer):

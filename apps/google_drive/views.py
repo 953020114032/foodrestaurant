@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from django.shortcuts import redirect
 from .google_cloud import get_google_auth_url, get_credentials_from_code
 from .models import GoogleAccount
-
+from rest_framework import status
 
 class GoogleLoginAPIView(APIView):
     def get(self, request):
@@ -21,7 +21,7 @@ class GoogleLoginAPIView(APIView):
         request.session.pop("oauth_state", None)
 
         url = get_google_auth_url(request)
-        return redirect(url)
+        return Response({"url":url},status=status.HTTP_200_OK)
 
 class GoogleCallbackAPIView(APIView):
     def get(self, request):
